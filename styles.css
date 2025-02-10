@@ -1,0 +1,238 @@
+body {
+	background: #323641;
+}
+
+.contact-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 200px;
+	height: 200px;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+}
+
+.animated-mail {
+	position: absolute;
+	height: 150px;
+	width: 200px;
+	transition: 0.4s;
+}
+
+.animated-mail .body {
+	position: absolute;
+	bottom: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 0 100px 200px;
+	border-radius: 8px;
+	border-color: transparent transparent #0174f5 transparent;
+	box-shadow: 0px -11px 50px 4px rgba(0, 0, 0, 0.19);
+	z-index: 2;
+}
+
+.animated-mail .top-fold {
+	position: absolute;
+	top: 52px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 50px 100px 0 100px;
+	border-radius: 8px;
+	transform-origin: 50% 0%;
+	transition: transform 0.4s 0.4s, z-index 0.2s 0.4s;
+	border-color: #0059fe transparent transparent transparent;
+	z-index: 2;
+}
+
+.animated-mail .back-fold {
+	position: absolute;
+	bottom: 0;
+	width: 200px;
+	height: 100px;
+	border-radius: 8px;
+	background: #0059fe;
+	z-index: 0;
+}
+
+.animated-mail .left-fold {
+	position: absolute;
+	bottom: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 50px 0 50px 100px;
+	border-radius: 8px;
+	border-color: transparent transparent transparent #0078ff;
+	z-index: 2;
+}
+
+.animated-mail .contact {
+	left: 20px;
+	bottom: 0px;
+	position: absolute;
+	width: 160px;
+	height: 98px;
+	border-radius: 12px;
+	background: white;
+	z-index: 1;
+	overflow: hidden;
+	transition: 0.4s 0.2s;
+}
+
+.contact-columns {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	gap: 5px;
+}
+
+.submit-columns {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 5px;
+	width: 100%;
+}
+
+.header-columns {
+	display: flex;
+	flex-direction: row;
+	align-content: start;
+	gap: 5px;
+	width: 100%;
+}
+
+.left {
+	top: 0;
+	margin-top: 5px;
+	margin-left: 5px;
+	height: 15px;
+	background: #000;
+	width: 50%;
+}
+
+.right {
+	top: 0;
+	margin-right: 10px;
+	height: 15px;
+	text-align: right;
+	width: 50%;
+}
+
+.column {
+	position: relative;
+	display: flex;
+	margin-right: 5px;
+	flex-direction: column;
+	width: 100%;
+}
+
+.row {
+	flex-direction: row;
+	gap: 2px;
+	margin-top: 5px;
+}
+
+.contact-title {
+	margin-top: 5px;
+	margin-left: 5px;
+	height: 10px;
+	width: 40%;
+	background: #037bff;
+	opacity: 0.3;
+}
+
+.column .contact-title {
+	width: 93%;
+}
+
+.column .contact-label {
+	width: 40%;
+}
+
+.full {
+	margin-right: 5px;
+	width: 93%;
+}
+
+.contact-checkbox {
+	margin-top: 8px;
+	margin-left: 10px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+}
+
+.contact-checkbox::before {
+	content: "";
+	width: 7px;
+	height: 7px;
+	border: 1px solid #037bff;
+	border-radius: 2px;
+	display: inline-block;
+}
+
+.contact-checkbox::after {
+	content: "";
+	width: 60px;
+	height: 2px;
+	background: #000;
+	display: inline-block;
+}
+
+.contact-message {
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	height: 25px;
+	width: 93%;
+	background: #c2c2c2;
+	opacity: 0.3;
+}
+
+.contact-label {
+	margin-top: 10px;
+	margin-left: 5px;
+	height: 5px;
+	width: 20%;
+	background: #cb5a5e;
+}
+
+.contact-label.full {
+	width: 100%;
+}
+
+.contact-submit {
+	margin-top: 8px;
+	margin-right: 15px;
+	margin-left: 0px;
+	border-radius: 15px;
+	height: 12px;
+	width: 25px;
+	background: #037bff;
+	transition: all 0.3s ease-in-out;
+	transition-delay: 3s;
+}
+
+.contact-image:hover .animated-mail {
+	transform: translateY(50px);
+}
+
+.contact-image:hover .animated-mail .top-fold {
+	transition: transform 0.4s, z-index 0.2s;
+	transform: rotateX(180deg);
+	border-radius: 8px;
+	z-index: 0;
+}
+
+.contact-image:hover .animated-mail .body {
+	box-shadow: 0px 45px 50px -4px rgba(0, 0, 0, 0.42);
+	transition: box-shadow 0.6s;
+}
+
+.contact-image:hover .animated-mail .contact {
+	height: 230px;
+}
