@@ -10,55 +10,151 @@
     <title>Animated Contact Modal</title>
   </head>
   <body>
-    <div class="contact-image">
-      <div class="animated-mail">
-        <div class="back-fold"></div>
-        <div class="contact">
-          <div class="header-columns">
-            <div class="left">Get in touch!</div>
-            <div class="right">x</div>
+    <!------ POPOVER -------> 
+<!-- Add form content within the popover by adding the popover attribute and id to the div. The popover attribute will hide the content of the div by default -->
+<div class="contact-popover" popover id=“modal”>
+  <div class="contact-container">
+    <header>
+      <span><h1>Get in touch</h1></span>
+      <span class="modal-toggle">&#10006;</span>
+    </header>
+    <div class="contact-body">
+      <div class="contact-info">
+        
+        <p>
+          Do you have a question, or want to know more? Please get in touch
+          either using the details below or completing the contact form.
+          <br /><br />
+          <strong>I look forward to hearing from you</strong>
+        </p>
+        <h2>My contact details</h2>
+        <ul>
+          <li><strong>Company Name:</strong> Your Company</li>
+          <li>
+            <strong>Address:</strong> 123 Main Street, Cityville, Country
+          </li>
+          <li>
+            <strong>Phone:</strong>
+            <a href="tel:+1234567890">+1 (234) 567-890</a>
+          </li>
+          <li>
+            <strong>Email:</strong>
+            <a href="mailto:info@yourcompany.com">info@yourcompany.com</a>
+          </li>
+          <li>
+            <strong>Operating Hours:</strong> Mon-Fri, 9:00 AM - 5:00 PM
+          </li>
+        </ul>
+      </div>
+
+      <div class="contact-form">
+        <h2>
+          Complete the form below and I will get back to you as soon as I can
+        </h2>
+        <form class="form-fields"> 
+          <div class="form-group">
+            <label for="first-name">First name</label>
+            <input type="text" id="first-name" required />
           </div>
-          <div class="contact-columns">
-            <div class="column">
-              <div class="contact-label"></div>
-              <div class="contact-title">
-                <div class="inside firstname"></div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="contact-label"></div>
-              <div class="contact-title">
-                <div class="inside surname"></div>
-              </div>
-            </div>
+
+          <div class="form-group">
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name" required />
           </div>
+
+          <div class="form-group full-width">
+            <label for="email">Email *</label>
+            <input type="email" id="email" required />
+            <small id="emailError">Maximum of 255 characters</small>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="message">Message *</label>
+            <textarea id="message" rows="4" required></textarea>
+            <small id="messageError"
+              >Minimum 50 characters, maximum of 500 characters</small
+            >
+          </div>
+          <p class="privacy-text">
+            acre security needs the contact information you provide to us to
+            contact you about our products and services. You may unsubscribe
+            from these communications at any time. For information on how to
+            unsubscribe, as well as our privacy practices and commitment to
+            protecting your privacy, please review our
+            <a href="#">Privacy Policy</a>.
+          </p>
+
+          <div class="form-group terms"> <!-- Add an additional class to the bottom fields to allow additional styling-->
+            <div class="terms-left">
+              <label
+                ><input type="checkbox" id="terms" name="terms" /> Please accept
+                our Privacy Policy<span>*</span></label
+              >
+              <small id="privacyError">This checkbox must be ticked</small>
+            </div>
+            <button type="submit" class="submit-btn" id="submit" disabled>
+              SUBMIT
+            </button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <!------ ANIMATED ENVELOPE ------->
+<!-- Changing the contact-image div to a button, allows the popover to be opened when the button is clicked. The button can be hidden using styles -->
+<button class="contact-image" popovertarget=“modal”> <!-- adding the popovertarget attribute tells this button, which element to open, by targetting the id -->
+  <div class="animated-mail">
+    <div class="back-fold"></div>
+    <div class="contact">
+      <div class="header-columns">
+        <div class="left">Get in touch!</div>
+        <div class="right">x</div>
+      </div>
+      <div class="contact-columns">
+        <div class="column">
           <div class="contact-label"></div>
-          <div class="contact-title full">
-            <div class="inside email"></div>
-          </div>
-          <div class="contact-label"></div>
-          <div class="contact-message">
-            <div class="inside message-one"></div>
-            <div class="inside message-two"></div>
-            <div class="inside message-three"></div>
-          </div>
-          <div class="submit-columns">
-            <div class="row-column">
-              <div class="contact-checkbox"></div>
-              <div class="tick">&#x2714;</div>
-            </div>
-            <div class="row-column">
-              <div class="contact-submit">
-              </div>
-              <div class="fake-cursor pointer">&#10148;</i></div>
-            </div>
+          <div class="contact-title">
+            <div class="inside firstname"></div>
           </div>
         </div>
-        <div class="top-fold"></div>
-        <div class="body"></div>
-        <div class="left-fold"></div>
+        <div class="column">
+          <div class="contact-label"></div>
+          <div class="contact-title">
+            <div class="inside surname"></div>
+          </div>
+        </div>
       </div>
-      <!-- 			<div class="shadow"></div> -->
+      <div class="contact-label"></div>
+      <div class="contact-title full">
+        <div class="inside email"></div>
+      </div>
+      <div class="contact-label"></div>
+      <div class="contact-message">
+        <div class="inside message-one"></div>
+        <div class="inside message-two"></div>
+        <div class="inside message-three"></div>
+      </div>
+      <div class="submit-columns">
+        <div class="row-column">
+          <div class="contact-checkbox"></div>
+          <div class="tick">&#x2714;</div>
+        </div>
+        <div class="row-column">
+          <div class="contact-submit">
+          </div>
+          <div class="fake-cursor pointer">&#10148;</i></div>
+        </div>
+      </div>
     </div>
+    <div class="top-fold"></div>
+    <div class="body"></div>
+    <div class="left-fold"></div>
+  </div>
+  <!-- 			<div class="shadow"></div> -->
+</button>
   </body>
 </html>
