@@ -6,21 +6,30 @@ body {
 	margin: 0px 50%;
   }
   
-  .contact-image {
+  /* Add some styles to hide the actual button element */
+  button {
+	background: none;
+	box-shadow: none;
+  }
+  
+.contact-image {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	width: 200px;
-	height: 200px;
+	height: 100px;
+	padding:0;
 	transform: translate(-50%, -50%);
 	cursor: pointer;
-	animation: bounce 1s ease-in-out;
+	animation: bounce 2s ease-in-out;
 	animation-iteration-count: infinite;
+	border:0;
+  
   }
   
   .animated-mail {
-	position: absolute;
-	height: 150px;
+	position: relative;
+	height: 100px; /* altered to the same height as the .contact-image class, to hide button behind it */
 	width: 200px;
 	transition: 0.4s;
   }
@@ -39,8 +48,7 @@ body {
   }
   
   .animated-mail .top-fold {
-	position: absolute;
-	top: 52px;
+	position: relative;
 	width: 0;
 	height: 0;
 	border-style: solid;
@@ -299,7 +307,7 @@ body {
 	height: 12px;
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity 0.3s ease 1s, visibility 0.3s linear;
+	transition: opacity 0.3s ease 0s, visibility 0.3s linear;
 	z-index: 11;
   }
   
@@ -369,7 +377,7 @@ body {
   /* ------ ANIMATIONS ------ */
   
   /* ------ WIGGLE ------ */
-  /* @keyframes wiggle {
+  @keyframes wiggle {
 	0% {
 	  transform: translate(-50%, -50%) rotate(0deg);
 	}
@@ -385,7 +393,7 @@ body {
 	100% {
 	  transform: translate(-50%, -50%) rotate(0deg);
 	}
-  } */
+  }
   
   .contact-image.stop-animate {
 	animation-play-state: paused;
@@ -394,11 +402,9 @@ body {
   
   /* ------ BOUNCE ------ */
   @keyframes bounce {
-	  0% { transform: translate(-50%, -50%) scale(0.6); }
-	  25% { transform: translate(-50%, -50%) scale(0.6); }
-	  50% { transform: translate(-50%, -55%) scale(0.6); }
-	  75% { transform: translate(-50%, -50%) scale(0.6); }
-	  100% { transform: translate(-50%, -50%) scale(0.6); }
+	  0% { transform: translate(-50%, -50%) scale(0.7); }
+	  50% { transform: translate(-50%, -55%) scale(0.8); }
+	  100% { transform: translate(-50%, -50%) scale(0.7); }
   }
   
   /* ------ ROTATE ------ */
@@ -426,10 +432,11 @@ body {
 	  100% { transform: translate(-50%, -50%) translateY(0px); }
   } */
   
-
-
   /* ------ FLAP ANIMATION ------ */
   /* Keyframes for the flap opening animation with a bounce */
+  /* Flap opening animation */
+  /* Flap opening animation */
+  /* Flap opening animation with more fluidity and additional keyframes */
   @keyframes openFlap {
 	0% {
 	  transform: rotateX(0deg) skew(0deg); /* Start with the flap closed */
@@ -455,6 +462,31 @@ body {
 	}
   }
   
+  /* Flap closing animation with a slight bounce and distortion */
+  @keyframes closeFlap {
+	0% {
+	  transform: rotateX(180deg) skew(0deg); /* Start with the flap fully open */
+	}
+	20% {
+	  transform: rotateX(150deg) skew(10deg); /* Begin closing with slight skew */
+	}
+	40% {
+	  transform: rotateX(120deg) skew(15deg); /* More closing */
+	}
+	50% {
+	  transform: rotateX(90deg) skew(20deg); /* Almost closed */
+	}
+	60% {
+	  transform: rotateX(70deg) skew(15deg); /* Almost there */
+	}
+	80% {
+	  transform: rotateX(40deg) skew(10deg); /* Slight rebound as it reaches near closed */
+	}
+	100% {
+	  transform: rotateX(0deg) skew(0deg); /* Final position: flap fully closed */
+	}
+  }
+  
   /* Apply opening animation */
   .top-fold.open {
 	animation: openFlap 0.5s ease-in-out forwards; /* Apply openFlap with more time */
@@ -466,7 +498,300 @@ body {
 	animation: closeFlap 0.5s ease-in-out forwards; /* Apply closeFlap with more time */
 	  z-index:1
   }
+  
+/* ------ POPOVER STYLES ------ */
 
+
+  :popover-open {
+	background-color: hsl(25, 100%, 50%);
+	border: 0;
+	color: hsl(300, 50%, 3%, 0.85);
+	padding: 1.5rem;
+	/* Start small and expand */
+	height: 0;
+	width: 0;
+	overflow: hidden; /* Prevents content from showing before animation */
+	transition: max-height 2s ease-in-out, max-width 2s ease-in-out, opacity 2s ease-in-out;
+	opacity: 0;
+  }
+  
+  .contact-popover:popover-open {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+	z-index: 999; /* Above everything else */
+	opacity: 1;
+  }
+  
+
+/* ------ MODAL STYLES ------ */
+
+.contact-container {
+	display:flex;
+	flex-direction:column;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	border-radius: 30px 5px 30px 30px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	width: 80%;
+	max-width: 1200px;
+	padding: 20px;
+	z-index: 1000; /* Above the overlay */
+  }
+  
+  .contact-popover.open,
+  .contact-container.open {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .contact-container header {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+  }
+  
+  .contact-container h1 {
+	font-size:50px;
+	margin:0;
+	padding-left:20px;
+	color:#cb5a5e;
+  }
+  
+  .contact-container header .modal-toggle {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background:#000;
+	padding:auto;
+	height:30px;
+	width:30px;
+	border-radius: 7px 5px 7px 7px;
+	font-size: 15px;
+	color:#fff;
+	cursor:pointer;
+  }
+  
+  .contact-container header .modal-toggle:hover {
+	color: #009cfd;
+  }
+  
+  .contact-body {
+	display: flex;
+	flex-direction: row;
+  }
+  
+  .contact-info {
+	flex: 1;
+	padding: 30px;
+	padding-top:0px;
+  
+  }
+  
+  .contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	flex: 1;
+	padding: 30px;
+  }
+  
+  .form-fields {
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+  }
+  
+  .contact-info p {
+	font-size: 24px;
+	line-height: 30px;
+	margin-top:50px;
+  }
+  
+  ul {
+	padding: 0;
+  }
+  
+  .contact-info li {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+	list-style: none;
+  }
+  
+  .contact-info li:nth-child(odd) {
+	background-color: #f2f2f2;
+  }
+  
+  .contact-info li:nth-child(even) {
+	background-color: #ffffff;
+  }
+  
+  .contact-form h2 {
+	font-size: 20px;
+  }
+  
+  .contact-info h2 {
+	font-size: 32px;
+	margin-top: 160px;
+	margin-bottom: 40px;
+	color: #333;
+  }
+  
+  form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+  }
+  
+  .form-group {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+  }
+  
+  .form-group.full-width {
+	flex: 100%;
+  }
+  
+  label {
+	font-size: 14px;
+	color: #555;
+	margin-bottom: 6px;
+  }
+  
+  input,
+  textarea {
+	padding: 10px;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	font-size: 14px;
+	background-color: #f9f9fb;
+  }
+  
+  textarea {
+	resize: none;
+  }
+  
+  .privacy-text {
+	grid-column: span 2;
+	font-size: 12px;
+	color: #999;
+	margin-top: 10px;
+  }
+  
+  .privacy-text a, .contact-info a {
+	color: #009cfd;
+	text-decoration: none;
+  }
+  
+  .terms {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 40px;
+  }
+  
+  .terms-left {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .submit-btn {
+	padding: 10px 10px;
+	border: none;
+	background-color: #009cfd;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+	background-color: #001878;
+  }
+  
+  .contact-form .form-group small {
+	display: block;
+	margin-top: 5px;
+	font-style: italic;
+	color: #186ceb;
+  }
+  
+  .contact-form .form-group small.error {
+	color: rgb(255, 43, 43); /* Red color for errors */
+	font-weight: bold;
+	display: block;
+	margin-top: 5px;
+  }
+  
+  .submit-btn:disabled {
+	background: grey;
+	color: #dddddd;
+  }
+  
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+  .contact-container {
+	  width: 80%;
+	  max-width: 100%;
+	  padding: 15px;
+	}
+  
+	.contact-info {
+	  display: none;
+	}
+  
+	.contact-body {
+	  flex-direction: column;
+	}
+  
+	.form-fields {
+	  flex-direction: column;
+	  gap: 15px;
+	}
+  
+	.contact-info h2 {
+	  margin-top: 50px;
+	  font-size: 24px;
+	}
+  }
+  
+  
+  @media (max-width: 768px) {
+  
+  .contact-container {
+	  width: 80%;
+	  padding: 10px;
+	}
+  
+	.contact-body {
+	  flex-direction: column;
+	}
+  
+	.contact-info {
+	  display: none;
+	}
+  
+	.form-fields {
+	  gap: 10px;
+	}
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
