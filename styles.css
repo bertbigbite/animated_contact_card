@@ -4,6 +4,9 @@ body {
 	background: #323641;
 	font-family: "Poppins", sans-serif;
 	margin: 0px 50%;
+	background-image: url("images/envelope.png");
+	background-repeat: repeat; /* Repeats the image on both X and Y axes */
+    background-size: 100px 100px; /* Keeps the original size of the image */
   }
   
   /* Add some styles to hide the actual button element */
