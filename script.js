@@ -30,6 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
      // When clicking on the element assigned to modalClosed, hide the open popover status to the div with the popover attribute, in this case, the div with the class .contact-popover
      modalClose.addEventListener("click", function () {
-        document.querySelector(".contact-popover").hidePopover();
+        document.querySelector(".contact-container").hidePopover();
     });
 });
