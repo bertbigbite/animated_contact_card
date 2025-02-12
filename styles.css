@@ -502,17 +502,8 @@ body {
 /* ------ POPOVER STYLES ------ */
 
 
-  :popover-open {
-	background-color: hsl(25, 100%, 50%);
+  [popover] {
 	border: 0;
-	color: hsl(300, 50%, 3%, 0.85);
-	padding: 1.5rem;
-	/* Start small and expand */
-	height: fit-content;
-	width: auto;
-	overflow: hidden; /* Prevents content from showing before animation */
-	transition: max-height 2s ease-in-out, max-width 2s ease-in-out, opacity 2s ease-in-out;
-	opacity: 1;
   }
   
   /* New Backdrop Styles */
