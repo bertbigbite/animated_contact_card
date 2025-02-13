@@ -3,7 +3,7 @@ body {
 	justify-content:center;
 	background: #323641;
 	font-family: "Poppins", sans-serif;
-	margin: 0px 50%;
+	margin: 0;
 	background-image: url("images/envelope.png");
 	background-repeat: repeat; /* Repeats the image on both X and Y axes */
     background-size: 100px 100px; /* Keeps the original size of the image */
@@ -257,7 +257,7 @@ body {
   }
   
   .contact-image:active .animated-mail {
-	transform: translateY(50px);
+	transform: translateY(px);
   }
   
   .contact-image:active .animated-mail .top-fold {
@@ -502,62 +502,91 @@ body {
 	  z-index:1
   }
   
+
+
 /* ------ POPOVER STYLES ------ */
-  
-[popover]:popover-open {
-	display:flex;
-	flex-direction:column;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: white;
-	border: 0;
-	border-radius: 40px 40px 5px 40px;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-	width: 0;
-	height:0;
-	max-width: 1200px;
-	padding: 20px;
-	z-index: 1000; /* Above the overlay */
-	animation: fade-in 0.7s ease-out forwards;
 
-  }
+/* ============================= */
+/* BACKDROP (Blur + Dark Overlay) */
+/* ============================= */
 
-/* Initial state of the backdrop (before popover is opened) */
+/* Initial state of the backdrop before the popover opens */
 [popover]::backdrop {
-    backdrop-filter: blur(4px); /* Blur effect */
+    backdrop-filter: blur(4px); /* Apply a soft blur effect */
+    opacity: 0; /* Initially invisible */
+    animation: backdrop-fade-in 0.7s ease-out forwards; /* Fade in immediately */
 }
 
-/* When popover is open (apply the fade-in effect) */
-[popover]:popover-open::backdrop {
-    background-color: rgba(1, 149, 255, 0.732); /* Semi-transparent color */
-	animation: backdrop-fade-in 0.7s ease-out forwards;
-}
-
-@keyframes fade-in {
-	0% {
-		height:0;
-		width:0;
-		opacity: 0;
-	}
-  
-	100% {
-		height:52%;
-		width:52%;
-		opacity: 1;
-	}
-  }
-
+/* Backdrop animation (fades in first, before the popover appears) */
 @keyframes backdrop-fade-in {
 	0% {
-	  background-color: rgb(0 0 0 / 0%);
+	  background-color: rgb(0 0 0 / 0%); /* Fully transparent */
+	  opacity: 0;
 	}
   
 	100% {
-	  background-color: rgba(0, 0, 0, 0.552);
+	  background-color: rgba(0, 0, 0, 0.552); /* Dark semi-transparent overlay */
+	  opacity: 1; /* Fully visible */
 	}
+}
+
+/* ============================= */
+/* POPOVER (Modal Window)        */
+/* ============================= */
+
+/* Popover animation: start collapsed, fold out, and expand */
+[popover]:popover-open {
+	display: flex; /* Enable flexbox for layout */
+	flex-direction: column; /* Arrange content in a column */
+	position: fixed; /* Keep the popover in a fixed position */
+	top: 50%; /* Center vertically */
+	left: 50%; /* Center horizontally */
+	transform: translate(-50%, 50%) scaleY(0) scaleX(0) rotate(90deg) skew(30deg, 15deg);
+	transform-origin: center;
+	/* Start collapsed and skewed to simulate the fold */
+	background-color: white; /* White background */
+	border: 0; /* Remove border */
+	border-radius: 40px 40px 5px 40px; /* Rounded corners */
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+	width: 1000px; /* Set fixed width */
+	padding: 20px; /* Add padding inside the popover */
+	z-index: 1000; /* Ensure it's above the backdrop */
+	opacity: 1; /* Initially visible */
+	visibility: hidden; /* Prevents flickering before animation starts */
+	animation: fade-in 0.7s ease-out forwards; 
+}
+
+/* Define the unfold animation (folding out from collapsed state) */
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		visibility: visible;
+		transform: translate(-50%, 50%) scaleY(0) scaleX(0) rotate(90deg) skew(20deg, 10deg);
+		/* Initial collapsed state with rotation and skew */
+	}
+	50% {
+		opacity: 0.5;
+		transform: translate(-50%, -50%) scaleY(0.6) scaleX(0.6) rotate(45deg) skew(15deg, 10deg);
+		/* Midway state, the popover starts to unfold, scaling and rotating */
+	}
+	100% {
+		opacity: 1;
+		visibility: visible;
+		transform: translate(-50%, -50%) scaleY(1) scaleX(1) rotate(0deg) skew(0deg, 0deg);
+		/* End state: fully expanded, centered, with no rotation or skew */
+	}
+}
+
+
+.animated-mail.lowered {
+	transform: translateY(400px);
   }
+
+  .contact-image.stop-animate {
+	animation-play-state: paused;
+	transform: translate(-50%, -50%) rotate(0deg);
+  }
+
 
 /* ------ MODAL SPECIFIC STYLES ------ */
 
