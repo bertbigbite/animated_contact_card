@@ -48,6 +48,7 @@ Extend Task 1 by animating elements inside the 'contact card' using CSS. Impleme
 3. Trigger internal card animations on `:active` instead of `:hover`.
 ##
 ### Task 4: Popover Attribute Implementation
+The folowing will support you with the next few tasks https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using
 #### 4.1: Setting Up the Popover
 **Branch:** [`Task_4.1_setting_popover`](https://github.com/bertbigbite/animated_contact_card/tree/Task_4.1_setting_popover)
 1. Convert the contact button container into a button element.
@@ -67,7 +68,7 @@ Extend Task 1 by animating elements inside the 'contact card' using CSS. Impleme
 ##
 #### 4.4: Advanced Popover Techniques
 **Branch:** [`Task_4.4_popover_advanced`](https://github.com/bertbigbite/animated_contact_card/tree/Task_4.4_popover_advanced)
-1. Use `blur` instead of an overlay for the background effect.
+1. Use `blur` instead of an overlay for the background effect. https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop
 2. Add animations to the popover for smooth transitions.
 3. Explore additional `popover` attributes for enhanced interactivity.
 
